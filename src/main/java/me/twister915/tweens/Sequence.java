@@ -36,6 +36,16 @@ public final class Sequence extends BaseInterpolateable {
         return this;
     }
 
+    public Sequence yoyo() {
+        setYoyo(!isYoyo());
+        return this;
+    }
+
+    public Sequence loop() {
+        setLoop(!isLoop());
+        return this;
+    }
+
     public void start(TweenManager manager) {
         setLength(lengthMs);
         Collections.sort(interpolatables, new Comparator<SequenceMember>() {
@@ -54,7 +64,7 @@ public final class Sequence extends BaseInterpolateable {
                 currentMember = interpolatable;
                 break;
             }
-        if (currentMember == null) throw new IllegalStateException("Unable to find suitable current member!");
+        if (currentMember == null) return;
         currentMember.interpolatable.interpolate(new BigDecimal(passedTime - currentMember.getStartTime()).divide(new BigDecimal(currentMember.getLength()), 4, BigDecimal.ROUND_CEILING));
     }
 

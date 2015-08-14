@@ -74,4 +74,9 @@ public final class TweenManager {
         for (Interpolatable activeTween : activeInterpolatables) activeTween.setStarted(false);
         activeInterpolatables.clear();
     }
+
+    public void kill(Interpolatable interpolatable) {
+        interpolatable.setStarted(false);
+        activeInterpolatables.remove(interpolatable);
+    }
 }
